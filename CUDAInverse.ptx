@@ -1,0 +1,316 @@
+	.version 1.4
+	.target sm_10, map_f64_to_f32
+	// compiled with /usr/local/cuda-4.2/open64/lib//be
+	// nvopencc 4.1 built on 2012-04-05
+
+	//-----------------------------------------------------------
+	// Compiling /tmp/tmpxft_0000a049_00000000-9_CUDAInverse.cpp3.i (/tmp/ccBI#.zIw3cW)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_10, Endian:little, Pointer Size:64
+	//  -O3	(Optimization level)
+	//  -g0	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"<command-line>"
+	.file	2	"/tmp/tmpxft_0000a049_00000000-8_CUDAInverse.cudafe2.gpu"
+	.file	3	"/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include/stddef.h"
+	.file	4	"/usr/local/cuda/bin/../include/crt/device_runtime.h"
+	.file	5	"/usr/local/cuda/bin/../include/host_defines.h"
+	.file	6	"/usr/local/cuda/bin/../include/builtin_types.h"
+	.file	7	"/usr/local/cuda/bin/../include/device_types.h"
+	.file	8	"/usr/local/cuda/bin/../include/driver_types.h"
+	.file	9	"/usr/local/cuda/bin/../include/surface_types.h"
+	.file	10	"/usr/local/cuda/bin/../include/texture_types.h"
+	.file	11	"/usr/local/cuda/bin/../include/vector_types.h"
+	.file	12	"/usr/local/cuda/bin/../include/device_launch_parameters.h"
+	.file	13	"/usr/local/cuda/bin/../include/crt/storage_class.h"
+	.file	14	"CUDAInverse.cu"
+	.file	15	"/usr/local/cuda/bin/../include/common_functions.h"
+	.file	16	"/usr/local/cuda/bin/../include/math_functions.h"
+	.file	17	"/usr/local/cuda/bin/../include/math_constants.h"
+	.file	18	"/usr/local/cuda/bin/../include/device_functions.h"
+	.file	19	"/usr/local/cuda/bin/../include/sm_11_atomic_functions.h"
+	.file	20	"/usr/local/cuda/bin/../include/sm_12_atomic_functions.h"
+	.file	21	"/usr/local/cuda/bin/../include/sm_13_double_functions.h"
+	.file	22	"/usr/local/cuda/bin/../include/sm_20_atomic_functions.h"
+	.file	23	"/usr/local/cuda/bin/../include/sm_20_intrinsics.h"
+	.file	24	"/usr/local/cuda/bin/../include/sm_30_intrinsics.h"
+	.file	25	"/usr/local/cuda/bin/../include/surface_functions.h"
+	.file	26	"/usr/local/cuda/bin/../include/texture_fetch_functions.h"
+	.file	27	"/usr/local/cuda/bin/../include/math_functions_dbl_ptx1.h"
+
+
+	.entry _Z6invertPdS_PKi (
+		.param .u64 __cudaparm__Z6invertPdS_PKi_I,
+		.param .u64 __cudaparm__Z6invertPdS_PKi_A,
+		.param .u64 __cudaparm__Z6invertPdS_PKi_n)
+	{
+	.reg .u16 %rh<12>;
+	.reg .u32 %r<58>;
+	.reg .u64 %rd<50>;
+	.reg .f32 %f<14>;
+	.reg .f64 %fd<26>;
+	.reg .pred %p<20>;
+	.loc	14	2	0
+$LDWbegin__Z6invertPdS_PKi:
+	ld.param.u64 	%rd1, [__cudaparm__Z6invertPdS_PKi_n];
+	ld.global.s32 	%r1, [%rd1+0];
+	mov.u32 	%r2, 0;
+	setp.le.s32 	%p1, %r1, %r2;
+	@%p1 bra 	$Lt_0_13570;
+	mov.u16 	%rh1, %ctaid.x;
+	mov.u16 	%rh2, %ntid.x;
+	mul.wide.u16 	%r3, %rh1, %rh2;
+	cvt.u32.u16 	%r4, %tid.x;
+	add.u32 	%r5, %r4, %r3;
+	mov.s32 	%r6, 0;
+$Lt_0_14082:
+ //<loop> Loop body line 2, nesting depth: 1, estimated iterations: unknown
+	.loc	14	4	0
+	setp.le.s32 	%p2, %r1, %r5;
+	@%p2 bra 	$Lt_0_18946;
+	mov.u16 	%rh3, %ctaid.y;
+	mov.u16 	%rh4, %ntid.y;
+	mul.wide.u16 	%r7, %rh3, %rh4;
+	cvt.u32.u16 	%r8, %tid.y;
+	add.u32 	%r9, %r8, %r7;
+	setp.le.s32 	%p3, %r1, %r9;
+	@%p3 bra 	$Lt_0_18946;
+	set.eq.u32.s32 	%r10, %r6, %r5;
+	neg.s32 	%r11, %r10;
+	set.ne.u32.s32 	%r12, %r5, %r9;
+	neg.s32 	%r13, %r12;
+	and.b32 	%r14, %r11, %r13;
+	mov.u32 	%r15, 0;
+	setp.eq.s32 	%p4, %r14, %r15;
+	@%p4 bra 	$Lt_0_18946;
+	.loc	14	11	0
+	ld.param.u64 	%rd2, [__cudaparm__Z6invertPdS_PKi_I];
+	mul.lo.s32 	%r16, %r1, %r5;
+	add.s32 	%r17, %r9, %r16;
+	cvt.s64.s32 	%rd3, %r17;
+	mul.wide.s32 	%rd4, %r17, 8;
+	add.u64 	%rd5, %rd2, %rd4;
+	ld.param.u64 	%rd6, [__cudaparm__Z6invertPdS_PKi_A];
+	ld.global.f64 	%fd1, [%rd5+0];
+	cvt.rn.f32.f64 	%f1, %fd1;
+	mul.lo.s32 	%r18, %r1, %r6;
+	add.s32 	%r19, %r6, %r18;
+	cvt.s64.s32 	%rd7, %r19;
+	mul.wide.s32 	%rd8, %r19, 8;
+	add.u64 	%rd9, %rd6, %rd8;
+	ld.global.f64 	%fd2, [%rd9+0];
+	cvt.rn.f32.f64 	%f2, %fd2;
+	div.full.f32 	%f3, %f1, %f2;
+	cvt.f64.f32 	%fd3, %f3;
+	st.global.f64 	[%rd5+0], %fd3;
+	.loc	14	12	0
+	ld.global.s32 	%r1, [%rd1+0];
+	mul.lo.s32 	%r20, %r1, %r5;
+	add.s32 	%r21, %r9, %r20;
+	cvt.s64.s32 	%rd10, %r21;
+	mul.wide.s32 	%rd11, %r21, 8;
+	add.u64 	%rd12, %rd6, %rd11;
+	ld.global.f64 	%fd4, [%rd12+0];
+	cvt.rn.f32.f64 	%f4, %fd4;
+	mul.lo.s32 	%r22, %r1, %r6;
+	add.s32 	%r23, %r6, %r22;
+	cvt.s64.s32 	%rd13, %r23;
+	mul.wide.s32 	%rd14, %r23, 8;
+	add.u64 	%rd15, %rd6, %rd14;
+	ld.global.f64 	%fd5, [%rd15+0];
+	cvt.rn.f32.f64 	%f5, %fd5;
+	div.full.f32 	%f6, %f4, %f5;
+	cvt.f64.f32 	%fd6, %f6;
+	st.global.f64 	[%rd12+0], %fd6;
+$Lt_0_18946:
+$L_0_11522:
+	.loc	14	14	0
+	bar.sync 	0;
+	ld.global.s32 	%r1, [%rd1+0];
+	setp.le.s32 	%p5, %r1, %r5;
+	@%p5 bra 	$Lt_0_19458;
+	mov.u16 	%rh5, %ctaid.y;
+	mov.u16 	%rh6, %ntid.y;
+	mul.wide.u16 	%r7, %rh5, %rh6;
+	cvt.u32.u16 	%r24, %tid.y;
+	add.u32 	%r9, %r24, %r7;
+	setp.le.s32 	%p6, %r1, %r9;
+	@%p6 bra 	$Lt_0_19458;
+	set.eq.u32.s32 	%r25, %r6, %r5;
+	neg.s32 	%r26, %r25;
+	set.eq.u32.s32 	%r27, %r5, %r9;
+	neg.s32 	%r28, %r27;
+	and.b32 	%r29, %r26, %r28;
+	mov.u32 	%r30, 0;
+	setp.eq.s32 	%p7, %r29, %r30;
+	@%p7 bra 	$Lt_0_19458;
+	.loc	14	20	0
+	ld.param.u64 	%rd16, [__cudaparm__Z6invertPdS_PKi_I];
+	mul.lo.s32 	%r31, %r1, %r5;
+	add.s32 	%r32, %r9, %r31;
+	cvt.s64.s32 	%rd17, %r32;
+	mul.wide.s32 	%rd18, %r32, 8;
+	add.u64 	%rd5, %rd16, %rd18;
+	ld.param.u64 	%rd6, [__cudaparm__Z6invertPdS_PKi_A];
+	ld.global.f64 	%fd7, [%rd5+0];
+	cvt.rn.f32.f64 	%f7, %fd7;
+	mul.lo.s32 	%r33, %r1, %r6;
+	add.s32 	%r34, %r6, %r33;
+	cvt.s64.s32 	%rd19, %r34;
+	mul.wide.s32 	%rd20, %r34, 8;
+	add.u64 	%rd21, %rd6, %rd20;
+	ld.global.f64 	%fd8, [%rd21+0];
+	cvt.rn.f32.f64 	%f8, %fd8;
+	div.full.f32 	%f9, %f7, %f8;
+	cvt.f64.f32 	%fd9, %f9;
+	st.global.f64 	[%rd5+0], %fd9;
+	.loc	14	21	0
+	ld.global.s32 	%r1, [%rd1+0];
+	mul.lo.s32 	%r35, %r1, %r5;
+	add.s32 	%r36, %r9, %r35;
+	cvt.s64.s32 	%rd22, %r36;
+	mul.wide.s32 	%rd23, %r36, 8;
+	add.u64 	%rd12, %rd6, %rd23;
+	ld.global.f64 	%fd10, [%rd12+0];
+	cvt.rn.f32.f64 	%f10, %fd10;
+	mul.lo.s32 	%r37, %r1, %r6;
+	add.s32 	%r38, %r6, %r37;
+	cvt.s64.s32 	%rd24, %r38;
+	mul.wide.s32 	%rd25, %r38, 8;
+	add.u64 	%rd26, %rd6, %rd25;
+	ld.global.f64 	%fd11, [%rd26+0];
+	cvt.rn.f32.f64 	%f11, %fd11;
+	div.full.f32 	%f12, %f10, %f11;
+	cvt.f64.f32 	%fd12, %f12;
+	st.global.f64 	[%rd12+0], %fd12;
+$Lt_0_19458:
+$L_0_12034:
+	.loc	14	23	0
+	bar.sync 	0;
+	ld.global.s32 	%r1, [%rd1+0];
+	setp.le.s32 	%p8, %r1, %r5;
+	@%p8 bra 	$Lt_0_19970;
+	mov.u16 	%rh7, %ctaid.y;
+	mov.u16 	%rh8, %ntid.y;
+	mul.wide.u16 	%r7, %rh7, %rh8;
+	cvt.u32.u16 	%r39, %tid.y;
+	add.u32 	%r9, %r39, %r7;
+	setp.le.s32 	%p9, %r1, %r9;
+	@%p9 bra 	$Lt_0_19970;
+	setp.eq.s32 	%p10, %r6, %r5;
+	@%p10 bra 	$Lt_0_19970;
+	.loc	14	29	0
+	mul.lo.s32 	%r40, %r1, %r5;
+	ld.param.u64 	%rd27, [__cudaparm__Z6invertPdS_PKi_I];
+	add.s32 	%r41, %r40, %r9;
+	cvt.s64.s32 	%rd28, %r41;
+	mul.wide.s32 	%rd29, %r41, 8;
+	add.u64 	%rd5, %rd27, %rd29;
+	ld.param.u64 	%rd6, [__cudaparm__Z6invertPdS_PKi_A];
+	ld.global.f64 	%fd13, [%rd5+0];
+	mul.lo.s32 	%r42, %r1, %r6;
+	add.s32 	%r43, %r9, %r42;
+	cvt.s64.s32 	%rd30, %r43;
+	mul.wide.s32 	%rd31, %r43, 8;
+	add.u64 	%rd32, %rd27, %rd31;
+	ld.global.f64 	%fd14, [%rd32+0];
+	add.s32 	%r44, %r40, %r6;
+	cvt.s64.s32 	%rd33, %r44;
+	mul.wide.s32 	%rd34, %r44, 8;
+	add.u64 	%rd35, %rd6, %rd34;
+	ld.global.f64 	%fd15, [%rd35+0];
+	mul.f64 	%fd16, %fd14, %fd15;
+	sub.f64 	%fd17, %fd13, %fd16;
+	st.global.f64 	[%rd5+0], %fd17;
+	setp.eq.s32 	%p11, %r6, %r9;
+	@%p11 bra 	$Lt_0_19970;
+	.loc	14	31	0
+	ld.global.s32 	%r1, [%rd1+0];
+	mul.lo.s32 	%r45, %r1, %r5;
+	add.s32 	%r46, %r45, %r9;
+	cvt.s64.s32 	%rd36, %r46;
+	mul.wide.s32 	%rd37, %r46, 8;
+	.loc	14	29	0
+	ld.param.u64 	%rd6, [__cudaparm__Z6invertPdS_PKi_A];
+	.loc	14	31	0
+	add.u64 	%rd12, %rd6, %rd37;
+	ld.global.f64 	%fd18, [%rd12+0];
+	add.s32 	%r47, %r45, %r6;
+	cvt.s64.s32 	%rd38, %r47;
+	mul.wide.s32 	%rd39, %r47, 8;
+	add.u64 	%rd40, %rd6, %rd39;
+	ld.global.f64 	%fd19, [%rd40+0];
+	mul.lo.s32 	%r48, %r1, %r6;
+	add.s32 	%r49, %r9, %r48;
+	cvt.s64.s32 	%rd41, %r49;
+	mul.wide.s32 	%rd42, %r49, 8;
+	add.u64 	%rd43, %rd6, %rd42;
+	ld.global.f64 	%fd20, [%rd43+0];
+	mul.f64 	%fd21, %fd19, %fd20;
+	sub.f64 	%fd22, %fd18, %fd21;
+	st.global.f64 	[%rd12+0], %fd22;
+$Lt_0_19970:
+$L_0_12546:
+	.loc	14	35	0
+	bar.sync 	0;
+	ld.global.s32 	%r1, [%rd1+0];
+	setp.le.s32 	%p12, %r1, %r5;
+	@%p12 bra 	$Lt_0_20482;
+	mov.u16 	%rh9, %ctaid.y;
+	mov.u16 	%rh10, %ntid.y;
+	mul.wide.u16 	%r7, %rh9, %rh10;
+	cvt.u32.u16 	%r50, %tid.y;
+	add.u32 	%r9, %r50, %r7;
+	setp.le.s32 	%p13, %r1, %r9;
+	@%p13 bra 	$Lt_0_20482;
+	setp.eq.s32 	%p14, %r6, %r5;
+	@%p14 bra 	$Lt_0_20482;
+	setp.ne.s32 	%p15, %r6, %r9;
+	@%p15 bra 	$Lt_0_20482;
+	.loc	14	42	0
+	mov.f64 	%fd23, 0d0000000000000000;	// 0
+	ld.param.u64 	%rd44, [__cudaparm__Z6invertPdS_PKi_A];
+	mul.lo.s32 	%r51, %r1, %r5;
+	add.s32 	%r52, %r9, %r51;
+	cvt.s64.s32 	%rd45, %r52;
+	mul.wide.s32 	%rd46, %r52, 8;
+	add.u64 	%rd47, %rd44, %rd46;
+	st.global.f64 	[%rd47+0], %fd23;
+	ld.global.s32 	%r1, [%rd1+0];
+$Lt_0_20482:
+$L_0_13058:
+	.loc	14	3	0
+	add.s32 	%r6, %r6, 1;
+	setp.gt.s32 	%p16, %r1, %r6;
+	@%p16 bra 	$Lt_0_14082;
+$Lt_0_13570:
+	mul.lo.s32 	%r53, %r1, %r1;
+	mov.u32 	%r54, 0;
+	setp.le.s32 	%p17, %r53, %r54;
+	@%p17 bra 	$Lt_0_17666;
+	ld.param.u64 	%rd48, [__cudaparm__Z6invertPdS_PKi_A];
+	mov.s32 	%r55, 0;
+$Lt_0_18178:
+ //<loop> Loop body line 3, nesting depth: 1, estimated iterations: unknown
+	.loc	14	48	0
+	mov.f64 	%fd24, 0d4014000000000000;	// 5
+	st.global.f64 	[%rd48+0], %fd24;
+	.loc	14	47	0
+	add.s32 	%r55, %r55, 1;
+	add.u64 	%rd48, %rd48, 8;
+	ld.global.s32 	%r1, [%rd1+0];
+	mul.lo.s32 	%r56, %r1, %r1;
+	setp.lt.s32 	%p18, %r55, %r56;
+	@%p18 bra 	$Lt_0_18178;
+$Lt_0_17666:
+	.loc	14	49	0
+	exit;
+$LDWend__Z6invertPdS_PKi:
+	} // _Z6invertPdS_PKi
+
